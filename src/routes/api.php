@@ -27,7 +27,12 @@ Route::get('/hello', function() {
 
 // Route::get('/quote/{id}', function ($id) {
 //     $data = Quote::find($id);
-//     return response()->json($data);
+//     if ($data) {
+//         return response()->json($data);
+//     } else {
+//         return response()->json(["message" => "Quote not found"], 404);
+//     }
 // });
 
 Route::get('/quote/{id}', [QuoteController::class, 'show']);
+Route::get('/quoter', [QuoteController::class, 'index']);

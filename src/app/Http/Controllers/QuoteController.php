@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\QuoteResource;
 use App\Models\Quote;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        //
+        return QuoteResource::collection(Quote::paginate(5));
     }
 
     /**
@@ -46,8 +47,9 @@ class QuoteController extends Controller
      */
     public function show($id)
     {
-        $data = Quote::findOrFail($id);
-        return response()->json($data);
+        return new QuoteResource(Quote::findOrFail($id));
+        // $data = Quote::findOrFail($id);
+        // return response()->json($data);
     }
 
     /**
