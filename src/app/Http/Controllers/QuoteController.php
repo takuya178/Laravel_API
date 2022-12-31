@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\QuoteResource;
 use App\Models\Quote;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreQuoteRequest;
 
 class QuoteController extends Controller
 {
@@ -34,17 +35,9 @@ class QuoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuoteRequest $request)
     {
-        $validated = $request->validate([
-            'text' => 'required|min:20',
-            'author' => 'required|min:10',
-        ]);
-
-        if ($validated) {
-            $quote = Quote::create($validated);
-            return new QuoteResource($quote);
-        }
+        return new QuoteResource(Quote::create($request->validated()));
     }
 
     /**
