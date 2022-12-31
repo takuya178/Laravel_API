@@ -36,7 +36,15 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'text' => 'required|min:20',
+            'author' => 'required|min:10',
+        ]);
+
+        if ($validated) {
+            $quote = Quote::create($validated);
+            return new QuoteResource($quote);
+        }
     }
 
     /**
