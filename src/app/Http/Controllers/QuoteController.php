@@ -44,9 +44,10 @@ class QuoteController extends Controller
      * @param  \App\Models\Quote  $quote
      * @return \Illuminate\Http\Response
      */
-    public function show(Quote $quote)
+    public function show($id)
     {
-        //
+        $data = Quote::findOrFail($id);
+        return response()->json($data);
     }
 
     /**

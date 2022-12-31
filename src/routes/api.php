@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Quote;
+use App\Http\Controllers\QuoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,10 @@ Route::get('/hello', function() {
     $data = ["message" => "Hello World"];
     return response()->json($data);
 });
+
+// Route::get('/quote/{id}', function ($id) {
+//     $data = Quote::find($id);
+//     return response()->json($data);
+// });
+
+Route::get('/quote/{id}', [QuoteController::class, 'show']);
