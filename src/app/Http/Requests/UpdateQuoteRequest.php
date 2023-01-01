@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreQuoteRequest extends FormRequest
+class UpdateQuoteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class StoreQuoteRequest extends FormRequest
     {
         return [
             'text' => 'required|min:20|unique:quotes',
-            'author' => 'required|min:10',
+            'author' => 'required|min:10'
         ];
     }
 }

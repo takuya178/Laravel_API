@@ -34,5 +34,7 @@ Route::get('/hello', function() {
 //     }
 // });
 
-Route::get('/quote/{id}', [QuoteController::class, 'show']);
-Route::get('/quoter', [QuoteController::class, 'index']);
+// Route::get('/quote/{id}', [QuoteController::class, 'show']);
+// Route::get('/quoter', [QuoteController::class, 'index']);
+// Route::put('/updateQuote/{id}', [QuoteController::class, 'update']);
+Route::apiResource('/quote', QuoteController::class);
