@@ -48,9 +48,7 @@ class QuoteController extends Controller
      */
     public function show($id)
     {
-        return new QuoteResource(Quote::findOrFail($id));
-        // $data = Quote::findOrFail($id);
-        // return response()->json($data);
+        return new QuoteResource(Quote::findOrFail($id));;
     }
 
     /**
