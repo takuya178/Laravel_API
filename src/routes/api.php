@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Quote;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\ApiAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,12 @@ Route::get('/hello', function() {
 // Route::get('/quoter', [QuoteController::class, 'index']);
 // Route::put('/updateQuote/{id}', [QuoteController::class, 'update']);
 Route::apiResource('/quote', QuoteController::class);
+
+// route middleware for authenticated user
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/quote', QuoteController::class);
+    // Route::post('/logout', ApiAuthController::class, 'logout');
+});
+
+Route::post('/register', [ApiAuthController::class, 'register']);
+Route::post('/login', [ApiAuthController::class, 'login']);
