@@ -14,6 +14,7 @@ class ApiAuthController extends Controller
     {
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = User::where('email', $request->email)->first();
+            $user->tokens()->delete();
             $token = $user->createToken('token')->plainTextToken;
             return new LoginResource([
                 'token' => $token,
@@ -33,6 +34,7 @@ class ApiAuthController extends Controller
 
     public function logout(Request $request)
     {
-        
+        $request->user()->tokens()->delete();
+        return response()->noContent();
     }
 }
